@@ -23,6 +23,7 @@ class Login extends React.Component {
       })
       .catch(err => {
         localStorage.removeItem("token");
+        console.log('error error')
       });
   };
 
