@@ -17,24 +17,32 @@ class Jokes extends React.Component {
     };
     axios
       .get("http://localhost:5000/api/jokes", requestOptions)
-      .then(response => {
-        this.setState({ jokes: response.data });
+      .then(res => {
+        this.setState({ jokes: res.data });
       })
-      .catch(error => {
-        // console.log("wheres ma token");
+      .catch(err => {
         this.props.history.push("/");
       });
   };
+
+  signout() {
+    localStorage.removeItem('token');
+  }
 
   render() {
     return (
       <div>
         <ul>
-          {this.state.jokes.map(joke => <li key={joke._id}> {joke.username}</li>)}
+          {this.state.jokes.map(joke => (
+            <div key={`${joke._id}${joke.setup}${joke.punchline}`}>
+              <p>{joke.setup}</p>
+              <p>{joke.punchline}</p>
+            </div>
+          ))}
         </ul>
         <div>
-          <Link to='/login'>
-            <button OnClick={this.signout}>Sign Out</button>
+          <Link to='/'>
+            <button onClick={this.signout}>Sign Out</button>
           </Link>
         </div>
       </div>
