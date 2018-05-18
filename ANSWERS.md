@@ -11,4 +11,4 @@ Bcrypt hashes out passwords with varying levels of time that we as developers ca
 This makes hacks like rainbow tables take an insane amount of time.
 
 3.  What are the three parts of the JSON Web Token?
-
+header, payload and signature
