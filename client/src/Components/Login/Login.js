@@ -25,6 +25,15 @@ class Login extends React.Component {
       });
   };
 
+  submitRegisterHandler = event => {
+    event.preventDefault();
+    axios
+      .post("http://localhost:5000/api/users", this.state)
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     return (
       <form>
@@ -50,6 +59,9 @@ class Login extends React.Component {
           <Link to='/jokes'>
             <button onClick={this.submitLoginHandler}>Login</button>
           </Link>
+          <div>
+            <button onClick={this.submitRegisterHandler}>Register</button>
+          </div>
         </div>
       </form>
     );
