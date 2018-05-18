@@ -15,16 +15,14 @@ const login = (req, res) => {
     }
     user.checkPassword(password, (nonMatch, hashMatch) => {
       // This is an example of using our User.method from our model.
-      if (nonMatch !== null) {
-        res.status(422).json({ error: 'passwords dont match' });
-        return;
-      }
       if (hashMatch) {
         const payload = {
           username: user.username
         }; // what will determine our payload.
         const token = jwt.sign(payload, mysecret); // creates our JWT with a secret and a payload and a hash.
         res.json({ token }); // sends the token back to the client
+      } else {
+        res.status(422).json({ error: 'passwords dont match' });
       }
     });
   });
