@@ -34,7 +34,7 @@ class Jokes extends React.Component {
       <div>
         <ul>
           {this.state.jokes.map(joke => (
-            <div key={`${joke._id}${joke.setup}${joke.punchline}`}>
+            <div key={`${joke.id}${joke.setup}${joke.punchline}`}>
               <p>{joke.setup}</p>
               <p>{joke.punchline}</p>
             </div>
